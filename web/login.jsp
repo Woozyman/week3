@@ -12,10 +12,19 @@
         <title>JSP Page</title>
     </head>
     <body>
+        <p>Login:</p>
         <form action="Login" method="POST">
-            <input type="text" name="username" value="" />
-            <input type="text" name="password" value="" />
+            Username: <input type="text" name="username" value="" />
+            Password: <input type="text" name="password" value="" />
             <input type="submit" value="Log in" name="submit" />
+        </form>
+        <br>
+        <p>Create User:</p>
+        <form action="NewUser" method="POST">
+            Username: <input type="text" name="username" value="" />
+            Password: <input type="text" name="passwordOne" value="" />
+            Repeat password: <input type="text" name="passwordTwo" value="" />
+            <input type="submit" value="Create" name="submit" />
         </form>
     </body>
 </html>

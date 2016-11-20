@@ -48,6 +48,9 @@ public class Login extends HttpServlet {
         boolean isAuthenticated = um.authenticateUser(username, password);
         if(isAuthenticated){
             response.getWriter().print("Du er nu logget ind");
+//            while(User.size){
+//                response.getWriter().print();
+//            }
         }else{
             response.getWriter().print("du er ikke logget ind");
         }
