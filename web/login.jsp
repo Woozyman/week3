@@ -20,9 +20,9 @@
         </form>
         <br>
         <p>Create User:</p>
-        <form action="NewUser" method="POST">
+        <form action="Login" method="POST">
             Username: <input type="text" name="username" value="" />
-            Password: <input type="text" name="passwordOne" value="" />
+            Password: <input type="text" name="password" value="" />
             Repeat password: <input type="text" name="passwordTwo" value="" />
             <input type="submit" value="Create" name="submit" />
         </form>

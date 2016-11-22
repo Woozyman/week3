@@ -20,11 +20,33 @@ import java.util.logging.Logger;
  * @author Michael
  */
 public class UserMapper {
-    public void createUser(){}
-//    public User getUser(int id) {}
+    String rowsFromDB = "";
+    public boolean createUser(String username, String password){
+        rowsFromDB = "";
+        try {
+//            String sql = "SELECT username, password FROM usertable WHERE username = 'admin'";
+            String sql = "INSERT INTO usertable (username, password) VALUES(?, ?)";
+            Connection con = DB.getConnection();
+            PreparedStatement pstmt = con.prepareStatement(sql);
+            pstmt.setString(1, username);
+            pstmt.setString(2, password);
+            int rs = pstmt.executeUpdate();
+            if(rs>0){
+                  System.out.println("success");
+                  return true;
+            }else{
+                 System.out.println("stuck somewhere");
+                 return false;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UserMapper.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+    }
+//    public User getUser() {}
     @SuppressWarnings("empty-statement")
     public List<User> getAllUsers() {
-        String rowsFromDB = "";    
+        rowsFromDB = "";    
         try {
             String sql = "SELECT COUNT(*) FROM usertable";
             Connection con = DB.getConnection();

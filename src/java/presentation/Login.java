@@ -45,14 +45,29 @@ public class Login extends HttpServlet {
         UserMapper um = new UserMapper();
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-        boolean isAuthenticated = um.authenticateUser(username, password);
-        if(isAuthenticated){
-            response.getWriter().print("Du er nu logget ind");
-//            while(User.size){
-//                response.getWriter().print();
-//            }
+        String passwordTwo = request.getParameter("passwordTwo");
+        if(passwordTwo.isEmpty()){
+            boolean isAuthenticated = um.authenticateUser(username, password);
+            if(isAuthenticated){
+                response.getWriter().print("Du er nu logget ind");
+//                while(User.size){
+//                    response.getWriter().print();
+//                }
+            }else{
+                response.getWriter().print("du er ikke logget ind");
+            }
         }else{
-            response.getWriter().print("du er ikke logget ind");
+            if(password.equals(passwordTwo) && !username.isEmpty()){
+                //opret bruger i DB
+                boolean isCreated = um.createUser(username, password);
+                if (isCreated){
+                    response.getWriter().print("Du er nu oprettet som bruger");
+                }else{
+                    response.getWriter().print("Kan ikke oprette bruger");
+                }
+            }else{
+                response.getWriter().print("dine password er ikke ens");
+            }
         }
     }
 
